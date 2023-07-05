@@ -1,0 +1,19 @@
+<header class="main-header">
+    <nav class="main-header_nav">
+        <ul class="main-header_item-list">
+            <li class="main-header_item">
+                <a href="/" class="<%=path==='/'?'active':''%>">Books</a>
+            </li>
+           <li class="main-header_item"><a href="cart">Cart</a></li> 
+           <li class="main-header_item">
+            <a href="/admin/add-book"  class="<%=path==='/admin/add-book'?'active':''%>">Add Books</a>
+        </li>  
+           <li class="main-header_item">
+             <a href="/admin/books" class="<%=path==='/admin/books'?'active':''%>">Admin Books</a>
+        </li>  
+           <li class="main-header_item"> <a href="/login">Login</a></li>
+           <li class="main-header_item"> <a href="/signup">Signup</a></li>
+        </ul>
+</nav>
+</header>
+

@@ -1,0 +1,34 @@
+<%- include("../includes/head.ejs") %>
+<link rel="stylesheet" href="/css/form.css">
+</head>
+<body>
+<%- include("../includes/navigation.ejs") %>
+<h1>ADD NEW BOOK</h1>
+<form action="/admin/add-book" method="post" class="product-form">
+<div class="form-control">
+    <label for="title">Book Title</label>
+    <input type="text" name="title">
+</div>
+<div class="form-control">
+    <label for="author">Book Author </label>
+    <input type="text" name="author">
+</div>
+<div class="form-control">
+    <label for="year">Book Release Year</label>
+    <input type="date" name="year">
+</div>
+<div class="form-control">
+    <label for="imgUrl">Book Cover</label>
+    <input type="text" name="imgUrl">
+</div>
+<div class="form-control">
+    <label for="description"> Book Descripion</label>
+    <input type="text" name="description">
+</div>
+<div class="form-control">
+    <label for="price"> Book price</label>
+    <input type="number" name="price">
+</div>
+<button type="submit" class="btn">Add Book</button>
+</form>
+<%- include("../includes/end.ejs") %>
