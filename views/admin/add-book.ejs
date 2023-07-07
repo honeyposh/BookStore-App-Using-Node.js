@@ -4,31 +4,41 @@
 <body>
 <%- include("../includes/navigation.ejs") %>
 <h1>ADD NEW BOOK</h1>
-<form action="/admin/add-book" method="post" class="product-form">
+<!-- <form action="/admin/<% if(editing) { %>edit-book<% } else { %> add-book <% } %>"  method="post" class="product-form"> -->
+    <form class="product-form" action="/admin/<% if (editing) { %>edit-book<% } else { %>add-book<% } %>" method="POST" >
 <div class="form-control">
     <label for="title">Book Title</label>
-    <input type="text" name="title">
+    <input 
+    type="text" 
+    name="title" 
+    value="<%if(editing){%><%=book.title%><%}%>"
+     >
 </div>
 <div class="form-control">
     <label for="author">Book Author </label>
-    <input type="text" name="author">
+    <input  type="text"  name="author" value="<%if(editing){%><%=book.author%><%}%>" >
 </div>
 <div class="form-control">
     <label for="year">Book Release Year</label>
-    <input type="date" name="year">
+    <input type="datetime" name="year" value="<%if(editing){%><%=book.year%><%}%>">
 </div>
 <div class="form-control">
     <label for="imgUrl">Book Cover</label>
-    <input type="text" name="imgUrl">
+    <input type="text" name="imgUrl" value="<%if(editing){%><%=book.imgUrl%><%}%>">
 </div>
 <div class="form-control">
     <label for="description"> Book Descripion</label>
-    <input type="text" name="description">
+    <input type="text" name="description" value="<%if(editing){%><%=book.description%><%}%>">
 </div>
 <div class="form-control">
     <label for="price"> Book price</label>
-    <input type="number" name="price">
+    <input type="number" name="price" value="<%if(editing){%><%=book.price%><%}%>">
 </div>
-<button type="submit" class="btn">Add Book</button>
-</form>
+<div>
+    <%if(editing){%>
+        <input type="hidden" value="<%=book._id%>" name="bookId">
+     <%}%>
+</div>
+<button type="submit" class="btn"><%if(editing){ %> Update <%}else{%>Add Book<%}%></button>
+ </form>
 <%- include("../includes/end.ejs") %>

@@ -16,6 +16,7 @@ exports.getAddBook = (req, res, next) => {
   res.render("admin/add-book", {
     pageTitle: "Add-Book",
     path: "/admin/add-book",
+    editing: false,
   });
 };
 exports.postAddBook = (req, res, next) => {
@@ -35,6 +36,50 @@ exports.postAddBook = (req, res, next) => {
   });
   book
     .save()
+    .then((result) => {
+      // console.log(result);
+      res.redirect("/");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+exports.getEditBook = (req, res, next) => {
+  const editMode = req.query.edit;
+  if (!editMode) {
+    res.redirect("/");
+  }
+  const bookId = req.params.bookId;
+  Book.findById(bookId).then((book) => {
+    if (!book) {
+      res.redirect("/");
+    }
+    return res.render("admin/add-book", {
+      pageTitle: "Add-Book",
+      path: "/admin/add-book",
+      editing: editMode,
+      book: book,
+    });
+  });
+};
+exports.postEditBook = (req, res, next) => {
+  const bookId = req.body.bookId;
+  const updatedTitle = req.body.title;
+  const updatedAuthor = req.body.author;
+  const updatedYear = req.body.year;
+  const updatedImgUrl = req.body.imgUrl;
+  const updatedDescription = req.body.description;
+  const updatedPrice = req.body.price;
+  Book.findById(bookId)
+    .then((book) => {
+      book.title = updatedTitle;
+      book.author = updatedAuthor;
+      book.year = updatedYear;
+      book.imgUrl = updatedImgUrl;
+      book.description = updatedDescription;
+      book.price = updatedPrice;
+      return book.save();
+    })
     .then((result) => {
       console.log(result);
       res.redirect("/");
