@@ -6,6 +6,7 @@ exports.getIndex = (req, res, next) => {
         pageTitle: "Books",
         path: "/",
         books: book,
+        isAuthenticated: req.session.isLoggedIn,
       });
     })
     .catch((err) => {
@@ -20,6 +21,7 @@ exports.getDetails = (req, res, next) => {
         pageTitle: "Details",
         path: "/",
         book: book,
+        isAuthenticated: req.session.isLoggedIn,
       });
     })
     .catch((err) => {
